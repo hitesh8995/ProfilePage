@@ -1,0 +1,3717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitesh Choudhary | Cybersecurity Analyst</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #7c3aed;
+            --accent: #06b6d4;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --gray-light: #e2e8f0;
+            --whatsapp-green: #25D366;
+            --whatsapp-dark: #128C7E;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.12);
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+            transition: background-color 0.5s ease;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* Cursor Effect */
+        .cursor-effect {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(37, 99, 235, 0.2);
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background 0.3s;
+        }
+
+        .cursor-effect.hover {
+            width: 40px;
+            height: 40px;
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 20px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 16px;
+            padding: 8px 0;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 160px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero h2 {
+            font-size: 1.8rem;
+            color: var(--gray);
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        /* WhatsApp specific button */
+        .btn-whatsapp {
+            background: linear-gradient(to right, var(--whatsapp-green), var(--whatsapp-dark));
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-whatsapp:hover {
+            background: var(--whatsapp-dark);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .hero-decoration {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, rgba(124, 58, 237, 0.05) 50%, transparent 70%);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        /* Section Styling */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: var(--gray);
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .image-frame {
+            width: 100%;
+            max-width: 400px;
+            height: 400px;
+            border-radius: var(--radius);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            position: relative;
+            margin: 0 auto;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .image-frame::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover;
+            border-radius: var(--radius);
+            transition: transform 0.5s ease;
+        }
+
+        .image-frame:hover::before {
+            transform: scale(1.05);
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--gray-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        .skill-level {
+            width: 100px;
+            height: 8px;
+            background: var(--gray-light);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        .skill-level-bar {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 4px;
+        }
+
+        /* Interactive Cards for Certificates & Platforms */
+        .interactive-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 2px solid transparent;
+        }
+
+        .interactive-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary);
+        }
+
+        .interactive-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .card-content {
+            flex-grow: 1;
+        }
+
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 20px;
+            transition: var(--transition);
+        }
+
+        .card-link:hover {
+            gap: 12px;
+            color: var(--secondary);
+        }
+
+        /* Modal for Certificate Verification */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: var(--radius);
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-hover);
+            position: relative;
+        }
+
+        .modal-header {
+            padding: 25px;
+            border-bottom: 1px solid var(--gray-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            color: var(--dark);
+            font-size: 1.8rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--gray);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--primary);
+        }
+
+        .modal-content {
+            padding: 25px;
+        }
+
+        .certificate-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .certificate-image {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .certificate-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .certificate-info h4 {
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .certificate-info p {
+            color: var(--gray);
+            margin-bottom: 10px;
+        }
+
+        .verification-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(to right, #10b981, #059669);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 500;
+            margin-top: 15px;
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            box-shadow: var(--shadow-hover);
+            z-index: 999;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.3);
+        }
+
+        /* Admin Panel Button (Hidden by default) */
+        .admin-panel-btn {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: var(--secondary);
+            color: white;
+            padding: 12px 16px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-size: 14px;
+            z-index: 999;
+            opacity: 0.3;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            display: none;
+        }
+
+        .admin-panel-btn:hover {
+            opacity: 1;
+            transform: translateY(-3px);
+        }
+
+        /* Admin Panel Modal */
+        .admin-modal {
+            max-width: 900px;
+        }
+
+        .admin-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .admin-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .admin-form input,
+        .admin-form textarea,
+        .admin-form select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--radius);
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .admin-form input:focus,
+        .admin-form textarea:focus,
+        .admin-form select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        /* Password Login Modal */
+        .login-modal {
+            max-width: 400px;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-header i {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .password-input-container {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .change-password-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: underline;
+        }
+
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--dark);
+            color: white;
+            padding: 15px 25px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-hover);
+            z-index: 2001;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast.success {
+            background: linear-gradient(to right, #10b981, #059669);
+        }
+
+        .toast.error {
+            background: linear-gradient(to right, #ef4444, #dc2626);
+        }
+
+        /* Contact Form WhatsApp Integration */
+        .whatsapp-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(37, 211, 102, 0.1);
+            border-radius: var(--radius);
+            border-left: 4px solid #25D366;
+        }
+
+        .whatsapp-option i {
+            color: #25D366;
+            font-size: 24px;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--radius);
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .phone-input-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .country-code {
+            width: 100px;
+        }
+
+        /* WhatsApp Contact Form Integration */
+        .contact-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .notification {
+            padding: 15px;
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .notification.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .notification.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo span {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+        }
+
+        /* Admin Tabs */
+        .admin-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--gray-light);
+            padding-bottom: 10px;
+        }
+
+        .admin-tab {
+            padding: 10px 20px;
+            background: var(--gray-light);
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+
+        .admin-tab:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .admin-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .admin-tab-content {
+            display: none;
+        }
+
+        .admin-tab-content.active {
+            display: block;
+        }
+
+        /* Skill Item Editor */
+        .skill-item-editor {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .skill-item-editor input {
+            flex: 1;
+        }
+
+        .skill-item-editor select {
+            width: 120px;
+        }
+
+        /* Tag Input */
+        .tag-input-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .tags-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .tag-item {
+            background: var(--gray-light);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tag-item button {
+            background: none;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+            font-size: 12px;
+            padding: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-decoration {
+                width: 400px;
+                height: 400px;
+                opacity: 0.5;
+            }
+            
+            .certificate-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 30px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .hero {
+                padding-top: 140px;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-decoration {
+                display: none;
+            }
+            
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+            
+            .admin-panel-btn {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                width: 95%;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .project-card, .skill-category, .interactive-card {
+                padding: 20px;
+            }
+            
+            .contact-form {
+                padding: 25px;
+            }
+            
+            .phone-input-container {
+                flex-direction: column;
+            }
+            
+            .country-code {
+                width: 100%;
+            }
+        }
+
+        /* Animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Scroll progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            z-index: 1001;
+            transition: width 0.2s ease;
+        }
+
+        /* Password Strength Bar */
+        #passwordStrength {
+            height: 5px;
+            background: #e2e8f0;
+            border-radius: 3px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        #passwordStrengthBar {
+            height: 100%;
+            width: 0%;
+            background: #ef4444;
+            transition: width 0.3s ease;
+        }
+
+        #passwordStrengthText {
+            color: var(--gray);
+            font-size: 12px;
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .project-img {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-img::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover;
+        }
+
+        .project-content {
+            padding: 30px;
+        }
+
+        .project-content h3 {
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .tag {
+            background: var(--gray-light);
+            color: var(--dark);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Timeline for Education & Experience */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--gray-light);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 80px;
+        }
+
+        .timeline-date {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 70px;
+            text-align: center;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 25px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .timeline-content h3 {
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor-effect"></div>
+    
+    <!-- Scroll Progress Bar -->
+    <div class="progress-bar"></div>
+    
+    <!-- Certificate Verification Modal -->
+    <div class="modal-overlay" id="certificateModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modalTitle">Certificate Details</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-content" id="modalContent">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Admin Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal login-modal">
+            <div class="modal-content">
+                <div class="login-header">
+                    <i class="fas fa-lock"></i>
+                    <h3>Admin Access Required</h3>
+                    <p>Enter password to access admin panel</p>
+                </div>
+                
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="adminPassword">Password</label>
+                        <div class="password-input-container">
+                            <input type="password" id="adminPassword" required 
+                                   placeholder="Enter admin password" 
+                                   autocomplete="current-password">
+                            <button type="button" class="toggle-password" id="togglePassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </button>
+                    </div>
+                    
+                    <div class="login-options">
+                        <span id="loginStatus"></span>
+                        <button type="button" class="change-password-btn" id="changePasswordBtn">
+                            Change Password
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Change Password Modal -->
+    <div class="modal-overlay" id="changePasswordModal">
+        <div class="modal login-modal">
+            <div class="modal-content">
+                <div class="login-header">
+                    <i class="fas fa-key"></i>
+                    <h3>Change Admin Password</h3>
+                    <p>Set a new secure password</p>
+                </div>
+                
+                <form id="changePasswordForm">
+                    <div class="form-group">
+                        <label for="currentPassword">Current Password</label>
+                        <input type="password" id="currentPassword" required 
+                               placeholder="Enter current password">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="newPassword">New Password</label>
+                        <div class="password-input-container">
+                            <input type="password" id="newPassword" required 
+                                   placeholder="Enter new password (min. 6 characters)"
+                                   minlength="6">
+                            <button type="button" class="toggle-password" id="toggleNewPassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm New Password</label>
+                        <input type="password" id="confirmPassword" required 
+                               placeholder="Confirm new password">
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px; margin-top: 20px;">
+                        <button type="submit" class="btn btn-primary" style="flex: 1;">
+                            <i class="fas fa-save"></i> Update Password
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="cancelChangePassword">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Admin Panel Modal -->
+    <div class="modal-overlay" id="adminModal">
+        <div class="modal admin-modal">
+            <div class="modal-header">
+                <h3>📝 Portfolio Management</h3>
+                <button class="modal-close" id="closeAdminModal">&times;</button>
+            </div>
+            <div class="modal-content">
+                <div class="admin-tabs" id="adminTabs">
+                    <button class="admin-tab active" data-tab="about">About Me</button>
+                    <button class="admin-tab" data-tab="skills">My Skills</button>
+                    <button class="admin-tab" data-tab="projects">Projects</button>
+                    <button class="admin-tab" data-tab="experience">Education & Experience</button>
+                    <button class="admin-tab" data-tab="certifications">Certifications</button>
+                    <button class="admin-tab" data-tab="platforms">Platforms</button>
+                </div>
+                
+                <!-- About Me Tab -->
+                <div id="aboutTab" class="admin-tab-content active">
+                    <form id="aboutForm" class="admin-form">
+                        <div class="form-group">
+                            <label for="heroTitle">Hero Title *</label>
+                            <input type="text" id="heroTitle" required placeholder="Your Name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="heroSubtitle">Hero Subtitle *</label>
+                            <input type="text" id="heroSubtitle" required placeholder="Your Profession">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="heroDescription">Hero Description *</label>
+                            <textarea id="heroDescription" rows="3" required placeholder="Brief introduction about yourself"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="aboutParagraph1">About Paragraph 1 *</label>
+                            <textarea id="aboutParagraph1" rows="3" required placeholder="First paragraph about you"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="aboutParagraph2">About Paragraph 2 *</label>
+                            <textarea id="aboutParagraph2" rows="3" required placeholder="Second paragraph about you"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="aboutParagraph3">About Paragraph 3</label>
+                            <textarea id="aboutParagraph3" rows="3" placeholder="Third paragraph about you (optional)"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="profileImage">Profile Image URL</label>
+                            <input type="text" id="profileImage" placeholder="https://example.com/profile.jpg">
+                            <small style="color: var(--gray);">Leave empty to use default image</small>
+                        </div>
+                        
+                        <div style="display: flex; gap: 10px; margin-top: 30px;">
+                            <button type="submit" class="btn btn-primary" style="flex: 1;">Save About Info</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Skills Tab -->
+                <div id="skillsTab" class="admin-tab-content">
+                    <form id="skillsForm" class="admin-form">
+                        <div class="form-group">
+                            <h4>Programming Skills</h4>
+                            <div id="programmingSkills">
+                                <!-- Skills will be loaded here -->
+                            </div>
+                            <button type="button" class="btn btn-secondary" onclick="addSkillItem('programming')" style="margin-top: 10px;">
+                                <i class="fas fa-plus"></i> Add Skill
+                            </button>
+                        </div>
+                        
+                        <div class="form-group">
+                            <h4>Cybersecurity Skills</h4>
+                            <div id="cybersecuritySkills">
+                                <!-- Skills will be loaded here -->
+                            </div>
+                            <button type="button" class="btn btn-secondary" onclick="addSkillItem('cybersecurity')" style="margin-top: 10px;">
+                                <i class="fas fa-plus"></i> Add Skill
+                            </button>
+                        </div>
+                        
+                        <div class="form-group">
+                            <h4>AI & Deep Learning Skills</h4>
+                            <div id="aiSkills">
+                                <!-- Skills will be loaded here -->
+                            </div>
+                            <button type="button" class="btn btn-secondary" onclick="addSkillItem('ai')" style="margin-top: 10px;">
+                                <i class="fas fa-plus"></i> Add Skill
+                            </button>
+                        </div>
+                        
+                        <div class="form-group">
+                            <h4>Soft Skills</h4>
+                            <div id="softSkills">
+                                <!-- Skills will be loaded here -->
+                            </div>
+                            <button type="button" class="btn btn-secondary" onclick="addSkillItem('soft')" style="margin-top: 10px;">
+                                <i class="fas fa-plus"></i> Add Skill
+                            </button>
+                        </div>
+                        
+                        <div style="display: flex; gap: 10px; margin-top: 30px;">
+                            <button type="submit" class="btn btn-primary" style="flex: 1;">Save All Skills</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Projects Tab -->
+                <div id="projectsTab" class="admin-tab-content">
+                    <div id="projectsList" style="margin-bottom: 30px;">
+                        <!-- Projects will be loaded here -->
+                    </div>
+                    
+                    <form id="projectForm" class="admin-form">
+                        <input type="hidden" id="projectId" value="new">
+                        
+                        <div class="form-group">
+                            <label for="projectTitle">Project Title *</label>
+                            <input type="text" id="projectTitle" required placeholder="Project Name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="projectDescription">Description *</label>
+                            <textarea id="projectDescription" rows="3" required placeholder="Project description"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="projectTags">Tags (comma separated)</label>
+                            <input type="text" id="projectTags" placeholder="e.g., Python, AI, Security">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="projectImage">Image URL</label>
+                            <input type="text" id="projectImage" placeholder="https://example.com/project.jpg">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="projectLink">Project Link</label>
+                            <input type="url" id="projectLink" placeholder="https://github.com/your-project">
+                        </div>
+                        
+                        <div style="display: flex; gap: 10px; margin-top: 30px;">
+                            <button type="submit" class="btn btn-primary" style="flex: 1;">Save Project</button>
+                            <button type="button" class="btn btn-secondary" onclick="resetProjectForm()">Add New</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Experience Tab -->
+                <div id="experienceTab" class="admin-tab-content">
+                    <div id="experienceList" style="margin-bottom: 30px;">
+                        <!-- Experience items will be loaded here -->
+                    </div>
+                    
+                    <form id="experienceForm" class="admin-form">
+                        <input type="hidden" id="experienceId" value="new">
+                        
+                        <div class="form-group">
+                            <label for="experienceType">Type *</label>
+                            <select id="experienceType" required>
+                                <option value="education">Education</option>
+                                <option value="experience">Experience</option>
+                                <option value="internship">Internship</option>
+                                <option value="training">Training</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="experienceDate">Date/Year *</label>
+                            <input type="text" id="experienceDate" required placeholder="e.g., 2023 - 2027">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="experienceTitle">Title *</label>
+                            <input type="text" id="experienceTitle" required placeholder="e.g., Bachelor of Technology">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="experienceSubtitle">Subtitle/Organization *</label>
+                            <input type="text" id="experienceSubtitle" required placeholder="e.g., University Name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="experienceDetails">Details *</label>
+                            <textarea id="experienceDetails" rows="3" required placeholder="Details about this education/experience"></textarea>
+                        </div>
+                        
+                        <div style="display: flex; gap: 10px; margin-top: 30px;">
+                            <button type="submit" class="btn btn-primary" style="flex: 1;">Save Experience</button>
+                            <button type="button" class="btn btn-secondary" onclick="resetExperienceForm()">Add New</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Certifications Tab -->
+                <div id="certificationsTab" class="admin-tab-content">
+                    <div id="certificateList" style="margin-bottom: 30px;">
+                        <!-- Certificates will be loaded here -->
+                    </div>
+                    
+                    <form id="certificateForm" class="admin-form">
+                        <input type="hidden" id="certificateId" value="new">
+                        
+                        <div class="form-group">
+                            <label for="certTitle">Certificate Title *</label>
+                            <input type="text" id="certTitle" required placeholder="e.g., HackerRank Python Certification">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="certIssuer">Issuing Organization *</label>
+                            <input type="text" id="certIssuer" required placeholder="e.g., HackerRank">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="certDate">Date Earned *</label>
+                            <input type="text" id="certDate" required placeholder="e.g., June 2023">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="certScore">Score (Optional)</label>
+                            <input type="text" id="certScore" placeholder="e.g., 95/100">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="certCode">Verification Code *</label>
+                            <input type="text" id="certCode" required placeholder="e.g., HR-PYTHON-2023-8995">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="certDescription">Description *</label>
+                            <textarea id="certDescription" rows="3" required placeholder="Describe what this certificate represents..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="certImage">Image URL</label>
+                            <input type="text" id="certImage" placeholder="https://example.com/certificate.jpg">
+                            <small style="color: var(--gray);">Leave empty to use default image</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="certVerifyUrl">Verification URL *</label>
+                            <input type="url" id="certVerifyUrl" required placeholder="https://verify.example.com/certificate">
+                        </div>
+                        
+                        <div style="display: flex; gap: 10px; margin-top: 30px;">
+                            <button type="submit" class="btn btn-primary" style="flex: 1;">Save Certificate</button>
+                            <button type="button" class="btn btn-secondary" onclick="resetCertificateForm()">Add New</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Platforms Tab -->
+                <div id="platformsTab" class="admin-tab-content">
+                    <div id="platformsList" style="margin-bottom: 30px;">
+                        <!-- Platforms will be loaded here -->
+                    </div>
+                    
+                    <form id="platformForm" class="admin-form">
+                        <input type="hidden" id="platformId" value="new">
+                        
+                        <div class="form-group">
+                            <label for="platformName">Platform Name *</label>
+                            <input type="text" id="platformName" required placeholder="e.g., GitHub">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="platformUrl">Profile URL *</label>
+                            <input type="url" id="platformUrl" required placeholder="https://github.com/username">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="platformIcon">Icon Class *</label>
+                            <input type="text" id="platformIcon" required placeholder="fab fa-github" value="fab fa-github">
+                            <small style="color: var(--gray);">Font Awesome icon class (e.g., fab fa-linkedin, fab fa-hackerrank)</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="platformDescription">Description *</label>
+                            <input type="text" id="platformDescription" required placeholder="e.g., Code repository and project showcase">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="platformUsername">Username *</label>
+                            <input type="text" id="platformUsername" required placeholder="e.g., hitesh8995">
+                        </div>
+                        
+                        <div style="display: flex; gap: 10px; margin-top: 30px;">
+                            <button type="submit" class="btn btn-primary" style="flex: 1;">Save Platform</button>
+                            <button type="button" class="btn btn-secondary" onclick="resetPlatformForm()">Add New</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Operation successful!</span>
+    </div>
+    
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/919381369796?text=Hi%20Hitesh,%20I%20saw%20your%20portfolio%20and%20wanted%20to%20connect!" 
+       class="whatsapp-float" 
+       target="_blank" 
+       title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <!-- Admin Panel Button (Hidden - appears after login) -->
+    <button class="admin-panel-btn" id="adminPanelBtn">
+        <i class="fas fa-cog"></i> Admin Panel
+    </button>
+    
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Profile<span></span></a>
+                
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="fade-in" id="heroTitle">Hitesh Choudhary</h1>
+                <h2 class="fade-in" id="heroSubtitle">Aspiring Cybersecurity Analyst</h2>
+                <p class="fade-in" id="heroDescription">Passionate about AI, secure system design, and scalable solutions. Combines analytical and problem-solving skills with curiosity for cutting-edge technologies in cybersecurity and machine learning.</p>
+                
+                <div class="cta-buttons fade-in">
+                    <a href="#contact" class="btn btn-primary">Get In Touch <i class="fas fa-arrow-right"></i></a>
+                    <a href="#projects" class="btn btn-secondary">View My Work</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-decoration"></div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <p id="aboutParagraph1">Aspiring Cybersecurity Analyst with internship experience at Palo Alto Networks and industrial training at Intel Unnati. Passionate about AI, secure system design, and scalable solutions.</p>
+                    <p id="aboutParagraph2">I combine analytical and problem-solving skills with curiosity for cutting-edge technologies in cybersecurity and machine learning. My background includes hands-on experience with network security, threat detection, and AI model deployment.</p>
+                    <p id="aboutParagraph3">Currently pursuing my Bachelor's in Computer Science and Cybersecurity with a CGPA of 8.26, I'm continuously expanding my knowledge and skills in the ever-evolving field of cybersecurity.</p>
+                    
+                    <div class="contact-info" style="margin-top: 30px;">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>hiteshchoudhary8995@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+91-9381369796</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image fade-in">
+                    <div class="image-frame" id="profileImageContainer"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Skills</h2>
+            </div>
+            
+            <div class="skills-container">
+                <div class="skill-category fade-in">
+                    <h3><i class="fas fa-code"></i> Programming</h3>
+                    <ul class="skill-list" id="programmingSkillsDisplay">
+                        <!-- Programming skills will be loaded here -->
+                    </ul>
+                </div>
+                
+                <div class="skill-category fade-in">
+                    <h3><i class="fas fa-shield-alt"></i> Cybersecurity</h3>
+                    <ul class="skill-list" id="cybersecuritySkillsDisplay">
+                        <!-- Cybersecurity skills will be loaded here -->
+                    </ul>
+                </div>
+                
+                <div class="skill-category fade-in">
+                    <h3><i class="fas fa-brain"></i> AI & Deep Learning</h3>
+                    <ul class="skill-list" id="aiSkillsDisplay">
+                        <!-- AI skills will be loaded here -->
+                    </ul>
+                </div>
+                
+                <div class="skill-category fade-in">
+                    <h3><i class="fas fa-users"></i> Soft Skills</h3>
+                    <ul class="skill-list" id="softSkillsDisplay">
+                        <!-- Soft skills will be loaded here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Projects</h2>
+            </div>
+            
+            <div class="projects-grid" id="projectsDisplay">
+                <!-- Projects will be loaded here -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- Experience & Education Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>Education & Experience</h2>
+            </div>
+            
+            <div class="timeline" id="experienceDisplay">
+                <!-- Experience items will be loaded here -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- Certifications & Platforms Section -->
+    <section id="certifications" class="certifications">
+        <div class="container">
+            <div class="section-title">
+                <h2>Certifications & Platforms</h2>
+            </div>
+            
+            <div class="skills-container">
+                <!-- Certifications Card -->
+                <div class="interactive-card fade-in" id="certificationsCard">
+                    <div class="card-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>My Certifications</h3>
+                    <div class="card-content">
+                        <p>View and verify all my professional certifications. All certificates are verified and can be checked online.</p>
+                        <div id="certificatePreview" style="margin-top: 15px;">
+                            <!-- Certificates will be loaded here dynamically -->
+                        </div>
+                    </div>
+                    <a href="#" class="card-link" id="viewCertificates">
+                        View All Certificates <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                
+                <!-- Workshops Card -->
+                <div class="interactive-card fade-in" id="workshopsCard">
+                    <div class="card-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Workshops Attended</h3>
+                    <div class="card-content">
+                        <p>Detailed information about workshops I've participated in:</p>
+                        <ul style="margin-top: 10px; padding-left: 20px; color: var(--gray);">
+                            <li>AI, ML & DL Workshop - Intel® Unnati Lab</li>
+                            <li>Cybersecurity workshops</li>
+                            <li>Technology seminars</li>
+                        </ul>
+                        <p style="margin-top: 15px;">Click to see workshop details and certifications.</p>
+                    </div>
+                    <a href="#" class="card-link" id="viewWorkshops">
+                        View Workshops <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                
+                <!-- Platforms Card -->
+                <div class="interactive-card fade-in" id="platformsCard">
+                    <div class="card-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Coding Platforms</h3>
+                    <div class="card-content">
+                        <p>Visit my profiles on various coding platforms:</p>
+                        <div id="platformsPreview" style="margin-top: 15px;">
+                            <!-- Platforms will be loaded here -->
+                        </div>
+                    </div>
+                    <a href="#" class="card-link" id="viewPlatforms">
+                        Visit Platforms <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                
+                <!-- Hobbies Card -->
+                <div class="interactive-card fade-in">
+                    <div class="card-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Interests & Hobbies</h3>
+                    <div class="card-content">
+                        <ul style="color: var(--gray);">
+                            <li>Cybersecurity Research</li>
+                            <li>AI & ML Blogging</li>
+                            <li>Coding Challenges</li>
+                            <li>Open Source Contributions</li>
+                            <li>Technology Workshops</li>
+                            <li>Security Conferences</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="card-link">
+                        Let's Connect <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item fade-in">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <p>hiteshchoudhary8995@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item fade-in">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3>Phone / WhatsApp</h3>
+                            <p>+91-9381369796</p>
+                            <small style="color: var(--gray); font-size: 14px;">Click to chat on WhatsApp</small>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item fade-in">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Location</h3>
+                            <p>Hyderabad, Telangana, India</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item fade-in">
+                        <div class="contact-icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <div>
+                            <h3>LinkedIn</h3>
+                            <p>linkedin.com/in/hitesh-cse</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Direct WhatsApp Link -->
+                    <div class="contact-item fade-in">
+                        <div class="contact-icon" style="background: linear-gradient(135deg, var(--whatsapp-green), var(--whatsapp-dark));">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <h3>Chat Directly</h3>
+                            <p>Click to message me on WhatsApp</p>
+                            <a href="https://wa.me/919381369796?text=Hello%20Hitesh,%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20connect." 
+                               target="_blank" class="btn btn-whatsapp" style="margin-top: 10px; padding: 10px 20px;">
+                                <i class="fab fa-whatsapp"></i> Open WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form fade-in">
+                    <div class="notification" id="notification"></div>
+                    
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name *</label>
+                            <input type="text" id="name" required placeholder="Enter your full name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Your Email *</label>
+                            <input type="email" id="email" required placeholder="Enter your email address">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Your Phone Number (Optional)</label>
+                            <div class="phone-input-container">
+                                <select class="country-code" id="countryCode">
+                                    <option value="+91" selected>+91 (India)</option>
+                                    <option value="+1">+1 (USA)</option>
+                                    <option value="+44">+44 (UK)</option>
+                                    <option value="+61">+61 (Australia)</option>
+                                    <option value="+49">+49 (Germany)</option>
+                                    <option value="+33">+33 (France)</option>
+                                    <option value="+81">+81 (Japan)</option>
+                                    <option value="+86">+86 (China)</option>
+                                </select>
+                                <input type="tel" id="phone" placeholder="Phone number (optional)">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <input type="text" id="subject" required placeholder="What is this regarding?">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" rows="5" required placeholder="Type your message here..."></textarea>
+                        </div>
+                        
+                        <div class="contact-buttons">
+                            <button type="submit" class="btn btn-whatsapp" id="sendWhatsApp" style="flex: 1;">
+                                <i class="fab fa-whatsapp"></i> Send via WhatsApp
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="sendEmail" style="flex: 1;">
+                                <i class="fas fa-envelope"></i> Send Email
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">Hitesh Choudhary<span></span></div>
+                    <p>Aspiring Cybersecurity Analyst passionate about AI, secure system design, and scalable solutions.</p>
+                    
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/hitesh-cse" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/hitesh8995" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:hiteshchoudhary8995@gmail.com" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://wa.me/919381369796" target="_blank" class="social-link" style="background: linear-gradient(135deg, var(--whatsapp-green), var(--whatsapp-dark));">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 style="color: white; margin-bottom: 20px;">Quick Links</h3>
+                    <ul class="skill-list" style="list-style: none; color: rgba(255,255,255,0.7);">
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><a href="#home" style="color: rgba(255,255,255,0.7); text-decoration: none;">Home</a></li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><a href="#about" style="color: rgba(255,255,255,0.7); text-decoration: none;">About</a></li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><a href="#skills" style="color: rgba(255,255,255,0.7); text-decoration: none;">Skills</a></li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><a href="#certifications" style="color: rgba(255,255,255,0.7); text-decoration: none;">Certifications</a></li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><a href="#contact" style="color: rgba(255,255,255,0.7); text-decoration: none;">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 style="color: white; margin-bottom: 20px;">Download Resume</h3>
+                    <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">Get a PDF copy of my complete resume for your records.</p>
+                    <a href="#" class="btn btn-primary" id="downloadResume">Download PDF <i class="fas fa-download"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Hitesh Choudhary. All rights reserved.</p>
+                <p style="margin-top: 5px;">Designed with <i class="fas fa-heart" style="color: #ef4444;"></i> for the cybersecurity community</p>
+                <p style="margin-top: 10px; font-size: 12px;">Contact: WhatsApp +91-9381369796 | Email: hiteshchoudhary8995@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // ============================================
+        // PASSWORD SECURITY SYSTEM
+        // ============================================
+        const PASSWORD_STORAGE_KEY = 'hitesh_admin_password';
+        const SESSION_STORAGE_KEY = 'hitesh_admin_session';
+        const DEFAULT_PASSWORD = 'admin123';
+        
+        function initializePassword() {
+            if (!localStorage.getItem(PASSWORD_STORAGE_KEY)) {
+                const hashedPassword = hashPassword(DEFAULT_PASSWORD);
+                localStorage.setItem(PASSWORD_STORAGE_KEY, hashedPassword);
+            }
+        }
+        
+        function hashPassword(password) {
+            let hash = 0;
+            for (let i = 0; i < password.length; i++) {
+                const char = password.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            return hash.toString(16);
+        }
+        
+        function verifyPassword(inputPassword) {
+            const storedHash = localStorage.getItem(PASSWORD_STORAGE_KEY);
+            const inputHash = hashPassword(inputPassword);
+            return storedHash === inputHash;
+        }
+        
+        function updatePassword(currentPassword, newPassword) {
+            if (!verifyPassword(currentPassword)) {
+                return { success: false, message: 'Current password is incorrect' };
+            }
+            
+            if (newPassword.length < 6) {
+                return { success: false, message: 'Password must be at least 6 characters' };
+            }
+            
+            const newHash = hashPassword(newPassword);
+            localStorage.setItem(PASSWORD_STORAGE_KEY, newHash);
+            return { success: true, message: 'Password updated successfully' };
+        }
+        
+        function createSession() {
+            const session = {
+                loggedIn: true,
+                timestamp: Date.now(),
+                expires: Date.now() + (60 * 60 * 1000)
+            };
+            sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(session));
+        }
+        
+        function checkSession() {
+            const sessionData = sessionStorage.getItem(SESSION_STORAGE_KEY);
+            if (!sessionData) return false;
+            
+            const session = JSON.parse(sessionData);
+            if (session.loggedIn && Date.now() < session.expires) {
+                return true;
+            }
+            
+            sessionStorage.removeItem(SESSION_STORAGE_KEY);
+            return false;
+        }
+        
+        function endSession() {
+            sessionStorage.removeItem(SESSION_STORAGE_KEY);
+        }
+        
+        // ============================================
+        // DATA STORAGE SYSTEM
+        // ============================================
+        const STORAGE_KEYS = {
+            ABOUT: 'hitesh_about',
+            SKILLS: 'hitesh_skills',
+            PROJECTS: 'hitesh_projects',
+            EXPERIENCE: 'hitesh_experience',
+            CERTIFICATES: 'hitesh_certificates',
+            PLATFORMS: 'hitesh_platforms'
+        };
+
+        // Default data
+        const defaultData = {
+            about: {
+                heroTitle: "Hitesh Choudhary",
+                heroSubtitle: "Aspiring Cybersecurity Analyst",
+                heroDescription: "Passionate about AI, secure system design, and scalable solutions. Combines analytical and problem-solving skills with curiosity for cutting-edge technologies in cybersecurity and machine learning.",
+                aboutParagraph1: "Aspiring Cybersecurity Analyst with internship experience at Palo Alto Networks and industrial training at Intel Unnati. Passionate about AI, secure system design, and scalable solutions.",
+                aboutParagraph2: "I combine analytical and problem-solving skills with curiosity for cutting-edge technologies in cybersecurity and machine learning. My background includes hands-on experience with network security, threat detection, and AI model deployment.",
+                aboutParagraph3: "Currently pursuing my Bachelor's in Computer Science and Cybersecurity with a CGPA of 8.26, I'm continuously expanding my knowledge and skills in the ever-evolving field of cybersecurity.",
+                profileImage: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            },
+            skills: {
+                programming: [
+                    { name: "Python", level: 90 },
+                    { name: "C", level: 85 },
+                    { name: "Java", level: 80 },
+                    { name: "MySQL", level: 85 }
+                ],
+                cybersecurity: [
+                    { name: "Network Security", level: 88 },
+                    { name: "Threat Detection", level: 85 },
+                    { name: "Incident Response", level: 82 },
+                    { name: "Security Fundamentals", level: 90 }
+                ],
+                ai: [
+                    { name: "Intel OpenVINO", level: 85 },
+                    { name: "DL Streamer", level: 88 },
+                    { name: "Model Deployment", level: 82 },
+                    { name: "AI Pipelines", level: 85 }
+                ],
+                soft: [
+                    { name: "Problem Solving", level: 0 },
+                    { name: "Analytical Thinking", level: 0 },
+                    { name: "Teamwork", level: 0 },
+                    { name: "Adaptability", level: 0 }
+                ]
+            },
+            projects: [
+                {
+                    id: 1,
+                    title: "Intel Unnati Project – Pipeline with DL Streamer",
+                    description: "Developed and deployed a scalable AI pipeline using DL Streamer for Intel hardware to enhance real-time video analytics. Collaborated with Intel mentors to optimize model inference performance across different compute nodes.",
+                    tags: ["Intel OpenVINO", "DL Streamer", "Python", "AI Model Deployment"],
+                    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    link: "https://github.com/hitesh8995/dlstreamer_project"
+                },
+                {
+                    id: 2,
+                    title: "Cybersecurity Virtual Internship – Palo Alto Networks",
+                    description: "Completed a 10-week virtual internship covering key cybersecurity domains including threat detection, prevention, and secure configurations. Implemented simulated network defense tasks to enhance understanding of vulnerability mitigation.",
+                    tags: ["Network Security", "Threat Analysis", "Security Fundamentals"],
+                    image: "",
+                    link: ""
+                }
+            ],
+            experience: [
+                {
+                    id: 1,
+                    type: "education",
+                    date: "2023 - 2027",
+                    title: "Bachelor of Technology – Computer Science and Cybersecurity",
+                    subtitle: "Marri Laxman Reddy Institute of Technology and Management, Hyderabad",
+                    details: "CGPA: 8.26. Currently pursuing degree with focus on cybersecurity, network security, and AI integration in security systems."
+                },
+                {
+                    id: 2,
+                    type: "internship",
+                    date: "2024",
+                    title: "Cybersecurity Virtual Internship",
+                    subtitle: "Palo Alto Networks (AICTE)",
+                    details: "10-week intensive virtual internship focusing on network security, threat analysis, and security fundamentals. Hands-on experience with simulated network defense and vulnerability mitigation techniques."
+                },
+                {
+                    id: 3,
+                    type: "training",
+                    date: "2023",
+                    title: "Industrial Training – AI & Deep Learning",
+                    subtitle: "Intel® Unnati",
+                    details: "Comprehensive training in AI and Deep Learning with focus on Intel OpenVINO and DL Streamer. Developed and deployed scalable AI pipelines for real-time video analytics on Intel hardware."
+                }
+            ],
+            certificates: [
+                {
+                    id: 1,
+                    title: "Intel® Unnati Industrial Training – AI & Deep Learning",
+                    issuer: "Intel Corporation",
+                    date: "2023",
+                    description: "Comprehensive industrial training in AI and Deep Learning with hands-on experience in Intel OpenVINO and DL Streamer.",
+                    verificationCode: "INTEL-UNNATI-2023-AI-8995",
+                    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    verifyUrl: "https://www.intel.com/content/www/us/en/developer/learn/certification.html",
+                    score: ""
+                },
+                {
+                    id: 2,
+                    title: "EF SET English Certificate – C2 Proficient",
+                    issuer: "EF Standard English Test",
+                    date: "2023",
+                    description: "Official EF SET certificate demonstrating C2 Proficient level in English, the highest level on the CEFR scale.",
+                    verificationCode: "EFSET-C2-2023-8995",
+                    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    verifyUrl: "https://www.efset.org/cert/",
+                    score: "74/100"
+                }
+            ],
+            platforms: [
+                {
+                    id: 1,
+                    name: "HackerRank",
+                    url: "https://www.hackerrank.com/profile/hiteshchoudhary",
+                    icon: "fab fa-hackerrank",
+                    description: "Coding challenges and skill verification",
+                    username: "hiteshchoudhary"
+                },
+                {
+                    id: 2,
+                    name: "GitHub",
+                    url: "https://github.com/hitesh8995",
+                    icon: "fab fa-github",
+                    description: "Code repository and project showcase",
+                    username: "hitesh8995"
+                },
+                {
+                    id: 3,
+                    name: "LinkedIn",
+                    url: "https://linkedin.com/in/hitesh-cse",
+                    icon: "fab fa-linkedin",
+                    description: "Professional network and profile",
+                    username: "hitesh-cse"
+                }
+            ]
+        };
+
+        // Initialize storage
+        function initializeStorage() {
+            initializePassword();
+            
+            // Initialize all storage keys with default data
+            Object.keys(defaultData).forEach(key => {
+                const storageKey = STORAGE_KEYS[key.toUpperCase()];
+                if (!localStorage.getItem(storageKey)) {
+                    localStorage.setItem(storageKey, JSON.stringify(defaultData[key]));
+                }
+            });
+        }
+
+        // Get data from storage
+        function getAboutData() {
+            return JSON.parse(localStorage.getItem(STORAGE_KEYS.ABOUT)) || defaultData.about;
+        }
+
+        function getSkillsData() {
+            return JSON.parse(localStorage.getItem(STORAGE_KEYS.SKILLS)) || defaultData.skills;
+        }
+
+        function getProjectsData() {
+            return JSON.parse(localStorage.getItem(STORAGE_KEYS.PROJECTS)) || defaultData.projects;
+        }
+
+        function getExperienceData() {
+            return JSON.parse(localStorage.getItem(STORAGE_KEYS.EXPERIENCE)) || defaultData.experience;
+        }
+
+        function getCertificatesData() {
+            return JSON.parse(localStorage.getItem(STORAGE_KEYS.CERTIFICATES)) || defaultData.certificates;
+        }
+
+        function getPlatformsData() {
+            return JSON.parse(localStorage.getItem(STORAGE_KEYS.PLATFORMS)) || defaultData.platforms;
+        }
+
+        // Save data to storage
+        function saveAboutData(data) {
+            localStorage.setItem(STORAGE_KEYS.ABOUT, JSON.stringify(data));
+        }
+
+        function saveSkillsData(data) {
+            localStorage.setItem(STORAGE_KEYS.SKILLS, JSON.stringify(data));
+        }
+
+        function saveProjectsData(data) {
+            localStorage.setItem(STORAGE_KEYS.PROJECTS, JSON.stringify(data));
+        }
+
+        function saveExperienceData(data) {
+            localStorage.setItem(STORAGE_KEYS.EXPERIENCE, JSON.stringify(data));
+        }
+
+        function saveCertificatesData(data) {
+            localStorage.setItem(STORAGE_KEYS.CERTIFICATES, JSON.stringify(data));
+        }
+
+        function savePlatformsData(data) {
+            localStorage.setItem(STORAGE_KEYS.PLATFORMS, JSON.stringify(data));
+        }
+
+        // ============================================
+        // WEBSITE CONTENT LOADING
+        // ============================================
+        function loadWebsiteContent() {
+            // Load About Me
+            const aboutData = getAboutData();
+            document.getElementById('heroTitle').textContent = aboutData.heroTitle;
+            document.getElementById('heroSubtitle').textContent = aboutData.heroSubtitle;
+            document.getElementById('heroDescription').textContent = aboutData.heroDescription;
+            document.getElementById('aboutParagraph1').textContent = aboutData.aboutParagraph1;
+            document.getElementById('aboutParagraph2').textContent = aboutData.aboutParagraph2;
+            document.getElementById('aboutParagraph3').textContent = aboutData.aboutParagraph3;
+            
+            // Set profile image
+            const profileImageContainer = document.getElementById('profileImageContainer');
+            if (aboutData.profileImage) {
+                profileImageContainer.style.backgroundImage = `url('${aboutData.profileImage}')`;
+                profileImageContainer.style.backgroundSize = 'cover';
+                profileImageContainer.style.backgroundPosition = 'center';
+            }
+            
+            // Load Skills
+            const skillsData = getSkillsData();
+            loadSkillsDisplay(skillsData);
+            
+            // Load Projects
+            const projectsData = getProjectsData();
+            loadProjectsDisplay(projectsData);
+            
+            // Load Experience
+            const experienceData = getExperienceData();
+            loadExperienceDisplay(experienceData);
+            
+            // Load Certificates
+            const certificatesData = getCertificatesData();
+            loadCertificatesPreview(certificatesData);
+            
+            // Load Platforms
+            const platformsData = getPlatformsData();
+            loadPlatformsPreview(platformsData);
+        }
+        
+        function loadSkillsDisplay(skillsData) {
+            const skillCategories = ['programming', 'cybersecurity', 'ai', 'soft'];
+            
+            skillCategories.forEach(category => {
+                const displayElement = document.getElementById(`${category}SkillsDisplay`);
+                if (displayElement && skillsData[category]) {
+                    let html = '';
+                    skillsData[category].forEach(skill => {
+                        if (skill.level > 0) {
+                            html += `
+                                <li>${skill.name} <div class="skill-level"><div class="skill-level-bar" style="width: ${skill.level}%"></div></div></li>
+                            `;
+                        } else {
+                            html += `<li>${skill.name}</li>`;
+                        }
+                    });
+                    displayElement.innerHTML = html;
+                }
+            });
+        }
+        
+        function loadProjectsDisplay(projectsData) {
+            const projectsDisplay = document.getElementById('projectsDisplay');
+            let html = '';
+            
+            projectsData.forEach(project => {
+                const imageUrl = project.image || "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
+                const tagsHtml = project.tags ? project.tags.map(tag => `<span class="tag">${tag}</span>`).join('') : '';
+                const linkHtml = project.link ? `<a href="${project.link}" target="_blank" class="btn btn-secondary" style="margin-top: 15px;">View Project</a>` : '';
+                
+                html += `
+                    <div class="project-card fade-in">
+                        <div class="project-img" style="background-image: url('${imageUrl}'); background-size: cover; background-position: center;"></div>
+                        <div class="project-content">
+                            <h3>${project.title}</h3>
+                            <div class="project-tags">${tagsHtml}</div>
+                            <p>${project.description}</p>
+                            ${linkHtml}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            projectsDisplay.innerHTML = html;
+        }
+        
+        function loadExperienceDisplay(experienceData) {
+            const experienceDisplay = document.getElementById('experienceDisplay');
+            let html = '';
+            
+            // Sort by date (newest first)
+            const sortedExperience = [...experienceData].sort((a, b) => {
+                // Extract first year from date string
+                const getYear = (dateStr) => {
+                    const match = dateStr.match(/\d{4}/);
+                    return match ? parseInt(match[0]) : 0;
+                };
+                return getYear(b.date) - getYear(a.date);
+            });
+            
+            sortedExperience.forEach(exp => {
+                const icon = getExperienceIcon(exp.type);
+                html += `
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-date">${exp.date}</div>
+                        <div class="timeline-content">
+                            <h3>${exp.title}</h3>
+                            <h4>${exp.subtitle}</h4>
+                            <p>${exp.details}</p>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            experienceDisplay.innerHTML = html;
+        }
+        
+        function getExperienceIcon(type) {
+            const icons = {
+                education: "fas fa-graduation-cap",
+                experience: "fas fa-briefcase",
+                internship: "fas fa-user-tie",
+                training: "fas fa-chalkboard-teacher"
+            };
+            return icons[type] || "fas fa-star";
+        }
+        
+        function loadCertificatesPreview(certificatesData) {
+            const previewContainer = document.getElementById('certificatePreview');
+            const listContainer = document.getElementById('certificateList');
+            
+            // Load preview
+            if (certificatesData.length === 0) {
+                previewContainer.innerHTML = '<p style="color: var(--gray);">No certificates added yet.</p>';
+                return;
+            }
+            
+            const previewCertificates = certificatesData.slice(0, 3);
+            let previewHtml = '';
+            
+            previewCertificates.forEach(cert => {
+                previewHtml += `
+                    <div style="padding: 10px 0; border-bottom: 1px solid var(--gray-light);">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 30px; height: 30px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px;">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div>
+                                <p style="font-weight: 500; color: var(--dark); margin-bottom: 2px;">${cert.title}</p>
+                                <p style="font-size: 12px; color: var(--gray);">${cert.issuer} • ${cert.date}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            if (certificatesData.length > 3) {
+                previewHtml += `<p style="margin-top: 10px; color: var(--primary); font-size: 14px;">+ ${certificatesData.length - 3} more certificates</p>`;
+            }
+            
+            previewContainer.innerHTML = previewHtml;
+            
+            // Load list for admin
+            let listHtml = '<div style="display: flex; flex-direction: column; gap: 10px;">';
+            certificatesData.forEach(cert => {
+                listHtml += `
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: var(--gray-light); border-radius: var(--radius);">
+                        <div>
+                            <p style="font-weight: 500; color: var(--dark); margin-bottom: 2px;">${cert.title}</p>
+                            <p style="font-size: 12px; color: var(--gray);">${cert.issuer} • ${cert.date}</p>
+                        </div>
+                        <div style="display: flex; gap: 5px;">
+                            <button onclick="editCertificate(${cert.id})" style="background: var(--primary); color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button onclick="deleteCertificate(${cert.id})" style="background: #ef4444; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            listHtml += '</div>';
+            listContainer.innerHTML = listHtml;
+        }
+        
+        function loadPlatformsPreview(platformsData) {
+            const previewContainer = document.getElementById('platformsPreview');
+            let html = '';
+            
+            platformsData.forEach(platform => {
+                html += `
+                    <div style="padding: 10px 0; border-bottom: 1px solid var(--gray-light);">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 30px; height: 30px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px;">
+                                <i class="${platform.icon}"></i>
+                            </div>
+                            <div>
+                                <p style="font-weight: 500; color: var(--dark); margin-bottom: 2px;">${platform.name}</p>
+                                <p style="font-size: 12px; color: var(--gray);">@${platform.username}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            previewContainer.innerHTML = html;
+        }
+
+        // ============================================
+        // ADMIN PANEL FUNCTIONS
+        // ============================================
+        function loadAdminPanelData() {
+            // Load About Me data into form
+            const aboutData = getAboutData();
+            document.getElementById('heroTitle').value = aboutData.heroTitle;
+            document.getElementById('heroSubtitle').value = aboutData.heroSubtitle;
+            document.getElementById('heroDescription').value = aboutData.heroDescription;
+            document.getElementById('aboutParagraph1').value = aboutData.aboutParagraph1;
+            document.getElementById('aboutParagraph2').value = aboutData.aboutParagraph2;
+            document.getElementById('aboutParagraph3').value = aboutData.aboutParagraph3;
+            document.getElementById('profileImage').value = aboutData.profileImage || '';
+            
+            // Load Skills into form
+            const skillsData = getSkillsData();
+            loadSkillsForm(skillsData);
+            
+            // Load Projects into form
+            const projectsData = getProjectsData();
+            loadProjectsForm(projectsData);
+            
+            // Load Experience into form
+            const experienceData = getExperienceData();
+            loadExperienceForm(experienceData);
+            
+            // Load Certificates into form (already loaded)
+            // Load Platforms into form
+            const platformsData = getPlatformsData();
+            loadPlatformsForm(platformsData);
+        }
+        
+        function loadSkillsForm(skillsData) {
+            const categories = ['programming', 'cybersecurity', 'ai', 'soft'];
+            
+            categories.forEach(category => {
+                const container = document.getElementById(`${category}Skills`);
+                if (container && skillsData[category]) {
+                    let html = '';
+                    skillsData[category].forEach((skill, index) => {
+                        html += `
+                            <div class="skill-item-editor">
+                                <input type="text" value="${skill.name}" placeholder="Skill name" data-category="${category}" data-index="${index}" class="skill-name">
+                                <select data-category="${category}" data-index="${index}" class="skill-level-select">
+                                    <option value="0" ${skill.level === 0 ? 'selected' : ''}>No bar</option>
+                                    <option value="70" ${skill.level === 70 ? 'selected' : ''}>70%</option>
+                                    <option value="75" ${skill.level === 75 ? 'selected' : ''}>75%</option>
+                                    <option value="80" ${skill.level === 80 ? 'selected' : ''}>80%</option>
+                                    <option value="85" ${skill.level === 85 ? 'selected' : ''}>85%</option>
+                                    <option value="90" ${skill.level === 90 ? 'selected' : ''}>90%</option>
+                                    <option value="95" ${skill.level === 95 ? 'selected' : ''}>95%</option>
+                                    <option value="100" ${skill.level === 100 ? 'selected' : ''}>100%</option>
+                                </select>
+                                <button type="button" onclick="removeSkillItem('${category}', ${index})" style="background: #ef4444; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        `;
+                    });
+                    container.innerHTML = html;
+                }
+            });
+        }
+        
+        function addSkillItem(category) {
+            const container = document.getElementById(`${category}Skills`);
+            const skillsData = getSkillsData();
+            const newIndex = skillsData[category] ? skillsData[category].length : 0;
+            
+            const html = `
+                <div class="skill-item-editor">
+                    <input type="text" placeholder="Skill name" data-category="${category}" data-index="${newIndex}" class="skill-name">
+                    <select data-category="${category}" data-index="${newIndex}" class="skill-level-select">
+                        <option value="0">No bar</option>
+                        <option value="70">70%</option>
+                        <option value="75">75%</option>
+                        <option value="80">80%</option>
+                        <option value="85">85%</option>
+                        <option value="90">90%</option>
+                        <option value="95">95%</option>
+                        <option value="100">100%</option>
+                    </select>
+                    <button type="button" onclick="removeSkillItem('${category}', ${newIndex})" style="background: #ef4444; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `;
+            
+            container.insertAdjacentHTML('beforeend', html);
+        }
+        
+        function removeSkillItem(category, index) {
+            const skillsData = getSkillsData();
+            if (skillsData[category] && skillsData[category][index]) {
+                skillsData[category].splice(index, 1);
+                saveSkillsData(skillsData);
+                loadSkillsForm(skillsData);
+                loadSkillsDisplay(skillsData);
+                showToast('Skill removed successfully', 'success');
+            }
+        }
+        
+        function loadProjectsForm(projectsData) {
+            const projectsList = document.getElementById('projectsList');
+            let html = '<h4>Existing Projects</h4>';
+            
+            if (projectsData.length === 0) {
+                html += '<p style="color: var(--gray);">No projects added yet.</p>';
+            } else {
+                html += '<div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">';
+                projectsData.forEach(project => {
+                    html += `
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: var(--gray-light); border-radius: var(--radius);">
+                            <div>
+                                <p style="font-weight: 500; color: var(--dark); margin-bottom: 2px;">${project.title}</p>
+                                <p style="font-size: 12px; color: var(--gray);">${project.tags ? project.tags.join(', ') : 'No tags'}</p>
+                            </div>
+                            <div style="display: flex; gap: 5px;">
+                                <button onclick="editProject(${project.id})" style="background: var(--primary); color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button onclick="deleteProject(${project.id})" style="background: #ef4444; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+            }
+            
+            projectsList.innerHTML = html;
+        }
+        
+        function editProject(id) {
+            const projectsData = getProjectsData();
+            const project = projectsData.find(p => p.id === id);
+            
+            if (!project) return;
+            
+            document.getElementById('projectId').value = project.id;
+            document.getElementById('projectTitle').value = project.title;
+            document.getElementById('projectDescription').value = project.description;
+            document.getElementById('projectTags').value = project.tags ? project.tags.join(', ') : '';
+            document.getElementById('projectImage').value = project.image || '';
+            document.getElementById('projectLink').value = project.link || '';
+            
+            // Scroll to form
+            document.getElementById('projectTitle').focus();
+        }
+        
+        function deleteProject(id) {
+            if (confirm('Are you sure you want to delete this project?')) {
+                let projectsData = getProjectsData();
+                projectsData = projectsData.filter(p => p.id !== id);
+                saveProjectsData(projectsData);
+                loadProjectsForm(projectsData);
+                loadProjectsDisplay(projectsData);
+                showToast('Project deleted successfully', 'success');
+            }
+        }
+        
+        function resetProjectForm() {
+            document.getElementById('projectId').value = 'new';
+            document.getElementById('projectForm').reset();
+        }
+        
+        function loadExperienceForm(experienceData) {
+            const experienceList = document.getElementById('experienceList');
+            let html = '<h4>Existing Experience Items</h4>';
+            
+            if (experienceData.length === 0) {
+                html += '<p style="color: var(--gray);">No experience items added yet.</p>';
+            } else {
+                html += '<div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">';
+                experienceData.forEach(exp => {
+                    const typeText = getExperienceTypeText(exp.type);
+                    html += `
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: var(--gray-light); border-radius: var(--radius);">
+                            <div>
+                                <p style="font-weight: 500; color: var(--dark); margin-bottom: 2px;">${exp.title}</p>
+                                <p style="font-size: 12px; color: var(--gray);">${typeText} • ${exp.date}</p>
+                            </div>
+                            <div style="display: flex; gap: 5px;">
+                                <button onclick="editExperience(${exp.id})" style="background: var(--primary); color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button onclick="deleteExperience(${exp.id})" style="background: #ef4444; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+            }
+            
+            experienceList.innerHTML = html;
+        }
+        
+        function getExperienceTypeText(type) {
+            const types = {
+                education: "Education",
+                experience: "Experience",
+                internship: "Internship",
+                training: "Training"
+            };
+            return types[type] || type;
+        }
+        
+        function editExperience(id) {
+            const experienceData = getExperienceData();
+            const exp = experienceData.find(e => e.id === id);
+            
+            if (!exp) return;
+            
+            document.getElementById('experienceId').value = exp.id;
+            document.getElementById('experienceType').value = exp.type;
+            document.getElementById('experienceDate').value = exp.date;
+            document.getElementById('experienceTitle').value = exp.title;
+            document.getElementById('experienceSubtitle').value = exp.subtitle;
+            document.getElementById('experienceDetails').value = exp.details;
+            
+            // Scroll to form
+            document.getElementById('experienceTitle').focus();
+        }
+        
+        function deleteExperience(id) {
+            if (confirm('Are you sure you want to delete this experience item?')) {
+                let experienceData = getExperienceData();
+                experienceData = experienceData.filter(e => e.id !== id);
+                saveExperienceData(experienceData);
+                loadExperienceForm(experienceData);
+                loadExperienceDisplay(experienceData);
+                showToast('Experience item deleted successfully', 'success');
+            }
+        }
+        
+        function resetExperienceForm() {
+            document.getElementById('experienceId').value = 'new';
+            document.getElementById('experienceForm').reset();
+        }
+        
+        function editCertificate(id) {
+            const certificatesData = getCertificatesData();
+            const cert = certificatesData.find(c => c.id === id);
+            
+            if (!cert) return;
+            
+            document.getElementById('certificateId').value = cert.id;
+            document.getElementById('certTitle').value = cert.title;
+            document.getElementById('certIssuer').value = cert.issuer;
+            document.getElementById('certDate').value = cert.date;
+            document.getElementById('certScore').value = cert.score || '';
+            document.getElementById('certCode').value = cert.verificationCode;
+            document.getElementById('certDescription').value = cert.description;
+            document.getElementById('certImage').value = cert.image || '';
+            document.getElementById('certVerifyUrl').value = cert.verifyUrl;
+            
+            // Switch to certificates tab
+            switchAdminTab('certifications');
+        }
+        
+        function deleteCertificate(id) {
+            if (confirm('Are you sure you want to delete this certificate?')) {
+                let certificatesData = getCertificatesData();
+                certificatesData = certificatesData.filter(c => c.id !== id);
+                saveCertificatesData(certificatesData);
+                loadCertificatesPreview(certificatesData);
+                showToast('Certificate deleted successfully', 'success');
+            }
+        }
+        
+        function resetCertificateForm() {
+            document.getElementById('certificateId').value = 'new';
+            document.getElementById('certificateForm').reset();
+        }
+        
+        function loadPlatformsForm(platformsData) {
+            const platformsList = document.getElementById('platformsList');
+            let html = '<h4>Existing Platforms</h4>';
+            
+            if (platformsData.length === 0) {
+                html += '<p style="color: var(--gray);">No platforms added yet.</p>';
+            } else {
+                html += '<div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">';
+                platformsData.forEach(platform => {
+                    html += `
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: var(--gray-light); border-radius: var(--radius);">
+                            <div>
+                                <p style="font-weight: 500; color: var(--dark); margin-bottom: 2px;">${platform.name}</p>
+                                <p style="font-size: 12px; color: var(--gray);">@${platform.username}</p>
+                            </div>
+                            <div style="display: flex; gap: 5px;">
+                                <button onclick="editPlatform(${platform.id})" style="background: var(--primary); color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button onclick="deletePlatform(${platform.id})" style="background: #ef4444; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+            }
+            
+            platformsList.innerHTML = html;
+        }
+        
+        function editPlatform(id) {
+            const platformsData = getPlatformsData();
+            const platform = platformsData.find(p => p.id === id);
+            
+            if (!platform) return;
+            
+            document.getElementById('platformId').value = platform.id;
+            document.getElementById('platformName').value = platform.name;
+            document.getElementById('platformUrl').value = platform.url;
+            document.getElementById('platformIcon').value = platform.icon;
+            document.getElementById('platformDescription').value = platform.description;
+            document.getElementById('platformUsername').value = platform.username;
+            
+            // Switch to platforms tab
+            switchAdminTab('platforms');
+        }
+        
+        function deletePlatform(id) {
+            if (confirm('Are you sure you want to delete this platform?')) {
+                let platformsData = getPlatformsData();
+                platformsData = platformsData.filter(p => p.id !== id);
+                savePlatformsData(platformsData);
+                loadPlatformsForm(platformsData);
+                loadPlatformsPreview(platformsData);
+                showToast('Platform deleted successfully', 'success');
+            }
+        }
+        
+        function resetPlatformForm() {
+            document.getElementById('platformId').value = 'new';
+            document.getElementById('platformForm').reset();
+        }
+
+        // ============================================
+        // WHATSAPP INTEGRATION
+        // ============================================
+        const WHATSAPP_NUMBER = "919381369796";
+
+        function sendWhatsAppMessage(name, email, subject, message) {
+            const whatsappMessage = 
+`*New Contact Message From Portfolio*
+            
+*Name:* ${name}
+*Email:* ${email}
+*Subject:* ${subject}
+
+*Message:*
+${message}
+
+*Time:* ${new Date().toLocaleString()}`;
+
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
+            return true;
+        }
+
+        function sendEmailMessage(name, email, subject, message) {
+            const emailBody = 
+`New Contact Message From Portfolio Website:
+
+Name: ${name}
+Email: ${email}
+Subject: ${subject}
+
+Message:
+${message}
+
+Time: ${new Date().toLocaleString()}`;
+
+            const mailtoLink = `mailto:hiteshchoudhary8995@gmail.com?subject=Portfolio Contact: ${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+            window.location.href = mailtoLink;
+            return true;
+        }
+
+        // ============================================
+        // TOAST NOTIFICATIONS
+        // ============================================
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            
+            toastMessage.textContent = message;
+            toast.className = `toast ${type}`;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // ============================================
+        // MODAL FUNCTIONS
+        // ============================================
+        const modal = document.getElementById('certificateModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+        const closeModal = document.getElementById('closeModal');
+        
+        const loginModal = document.getElementById('loginModal');
+        const changePasswordModal = document.getElementById('changePasswordModal');
+        const adminModal = document.getElementById('adminModal');
+        const closeAdminModal = document.getElementById('closeAdminModal');
+        const adminPanelBtn = document.getElementById('adminPanelBtn');
+
+        function openModal(title, content) {
+            modalTitle.textContent = title;
+            modalContent.innerHTML = content;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModalFunction() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function openLoginModal() {
+            loginModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLoginModal() {
+            loginModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function openChangePasswordModal() {
+            changePasswordModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeChangePasswordModal() {
+            changePasswordModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function openAdminModal() {
+            if (!checkSession()) {
+                openLoginModal();
+                return;
+            }
+            
+            adminModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            loadAdminPanelData();
+        }
+
+        function closeAdminModalFunction() {
+            adminModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function switchAdminTab(tabName) {
+            // Remove active class from all tabs
+            document.querySelectorAll('.admin-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.admin-tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Add active class to selected tab
+            document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+            document.getElementById(`${tabName}Tab`).classList.add('active');
+        }
+
+        // ============================================
+        // PASSWORD STRENGTH CHECKER
+        // ============================================
+        function checkPasswordStrength(password) {
+            let strength = 0;
+            const strengthBar = document.getElementById('passwordStrengthBar');
+            const strengthText = document.getElementById('passwordStrengthText');
+            
+            if (password.length >= 6) strength += 1;
+            if (password.length >= 8) strength += 1;
+            if (/[A-Z]/.test(password)) strength += 1;
+            if (/[0-9]/.test(password)) strength += 1;
+            if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+            
+            let width = 0;
+            let color = '#ef4444';
+            let text = 'Very weak';
+            
+            switch(strength) {
+                case 1:
+                    width = 20;
+                    color = '#ef4444';
+                    text = 'Very weak';
+                    break;
+                case 2:
+                    width = 40;
+                    color = '#f97316';
+                    text = 'Weak';
+                    break;
+                case 3:
+                    width = 60;
+                    color = '#eab308';
+                    text = 'Fair';
+                    break;
+                case 4:
+                    width = 80;
+                    color = '#22c55e';
+                    text = 'Strong';
+                    break;
+                case 5:
+                    width = 100;
+                    color = '#16a34a';
+                    text = 'Very strong';
+                    break;
+            }
+            
+            strengthBar.style.width = width + '%';
+            strengthBar.style.background = color;
+            strengthText.textContent = `Password strength: ${text}`;
+            strengthText.style.color = color;
+        }
+
+        // ============================================
+        // EVENT LISTENERS
+        // ============================================
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize storage and load content
+            initializeStorage();
+            loadWebsiteContent();
+            
+            // Show admin button if session exists
+            if (checkSession()) {
+                adminPanelBtn.style.display = 'block';
+            }
+            
+            // Check URL for admin parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('admin') === 'true' && !checkSession()) {
+                openLoginModal();
+            }
+            
+            // Custom Cursor
+            const cursor = document.querySelector('.cursor-effect');
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+            
+            // Add hover effect
+            const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-category, .interactive-card');
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            });
+            
+            // Scroll Progress Bar
+            const progressBar = document.querySelector('.progress-bar');
+            window.addEventListener('scroll', () => {
+                const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (window.scrollY / windowHeight) * 100;
+                progressBar.style.width = scrolled + '%';
+            });
+            
+            // Header scroll effect
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('scrolled', window.scrollY > 50);
+            });
+            
+            // Mobile menu
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                hamburger.innerHTML = navLinks.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+            
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+            
+            // Scroll animations
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const fadeInOnScroll = () => {
+                fadeElements.forEach(element => {
+                    if (element.getBoundingClientRect().top < window.innerHeight - 150) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+            window.addEventListener('scroll', fadeInOnScroll);
+            fadeInOnScroll();
+            
+            // Modal events
+            closeModal.addEventListener('click', closeModalFunction);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModalFunction();
+            });
+            
+            closeAdminModal.addEventListener('click', closeAdminModalFunction);
+            adminModal.addEventListener('click', (e) => {
+                if (e.target === adminModal) closeAdminModalFunction();
+            });
+            
+            // Admin tabs
+            document.querySelectorAll('.admin-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabName = this.getAttribute('data-tab');
+                    switchAdminTab(tabName);
+                });
+            });
+            
+            // Admin panel button
+            adminPanelBtn.addEventListener('click', openAdminModal);
+            
+            // Toggle password visibility
+            document.getElementById('togglePassword').addEventListener('click', function() {
+                const passwordInput = document.getElementById('adminPassword');
+                const icon = this.querySelector('i');
+                
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    icon.className = 'fas fa-eye-slash';
+                } else {
+                    passwordInput.type = 'password';
+                    icon.className = 'fas fa-eye';
+                }
+            });
+            
+            document.getElementById('toggleNewPassword').addEventListener('click', function() {
+                const passwordInput = document.getElementById('newPassword');
+                const icon = this.querySelector('i');
+                
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    icon.className = 'fas fa-eye-slash';
+                } else {
+                    passwordInput.type = 'password';
+                    icon.className = 'fas fa-eye';
+                }
+            });
+            
+            // Password strength checker
+            document.getElementById('newPassword').addEventListener('input', function() {
+                checkPasswordStrength(this.value);
+            });
+            
+            // Login form
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const password = document.getElementById('adminPassword').value;
+                const status = document.getElementById('loginStatus');
+                
+                if (verifyPassword(password)) {
+                    createSession();
+                    adminPanelBtn.style.display = 'block';
+                    closeLoginModal();
+                    showToast('Admin login successful!', 'success');
+                    
+                    // Open admin panel after successful login
+                    setTimeout(() => openAdminModal(), 500);
+                } else {
+                    status.textContent = 'Incorrect password';
+                    status.style.color = '#ef4444';
+                    document.getElementById('adminPassword').value = '';
+                    document.getElementById('adminPassword').focus();
+                    
+                    // Shake animation for wrong password
+                    this.classList.add('shake');
+                    setTimeout(() => this.classList.remove('shake'), 500);
+                }
+            });
+            
+            // Change password button
+            document.getElementById('changePasswordBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                closeLoginModal();
+                openChangePasswordModal();
+            });
+            
+            // Cancel change password
+            document.getElementById('cancelChangePassword').addEventListener('click', closeChangePasswordModal);
+            
+            // Change password form
+            document.getElementById('changePasswordForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const currentPassword = document.getElementById('currentPassword').value;
+                const newPassword = document.getElementById('newPassword').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                
+                if (newPassword !== confirmPassword) {
+                    showToast('New passwords do not match', 'error');
+                    return;
+                }
+                
+                const result = updatePassword(currentPassword, newPassword);
+                
+                if (result.success) {
+                    showToast(result.message, 'success');
+                    closeChangePasswordModal();
+                    
+                    // Auto-login with new password
+                    createSession();
+                    adminPanelBtn.style.display = 'block';
+                    openAdminModal();
+                } else {
+                    showToast(result.message, 'error');
+                }
+            });
+            
+            // About form submission
+            document.getElementById('aboutForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const aboutData = {
+                    heroTitle: document.getElementById('heroTitle').value,
+                    heroSubtitle: document.getElementById('heroSubtitle').value,
+                    heroDescription: document.getElementById('heroDescription').value,
+                    aboutParagraph1: document.getElementById('aboutParagraph1').value,
+                    aboutParagraph2: document.getElementById('aboutParagraph2').value,
+                    aboutParagraph3: document.getElementById('aboutParagraph3').value,
+                    profileImage: document.getElementById('profileImage').value
+                };
+                
+                saveAboutData(aboutData);
+                loadWebsiteContent();
+                showToast('About information saved successfully!', 'success');
+            });
+            
+            // Skills form submission
+            document.getElementById('skillsForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const skillsData = {
+                    programming: [],
+                    cybersecurity: [],
+                    ai: [],
+                    soft: []
+                };
+                
+                // Collect skills from form
+                document.querySelectorAll('.skill-item-editor').forEach(editor => {
+                    const nameInput = editor.querySelector('.skill-name');
+                    const levelSelect = editor.querySelector('.skill-level-select');
+                    
+                    if (nameInput && nameInput.value.trim()) {
+                        const category = nameInput.getAttribute('data-category');
+                        const level = parseInt(levelSelect.value);
+                        
+                        skillsData[category].push({
+                            name: nameInput.value.trim(),
+                            level: level
+                        });
+                    }
+                });
+                
+                saveSkillsData(skillsData);
+                loadSkillsDisplay(skillsData);
+                showToast('Skills saved successfully!', 'success');
+            });
+            
+            // Project form submission
+            document.getElementById('projectForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const id = document.getElementById('projectId').value;
+                const title = document.getElementById('projectTitle').value;
+                const description = document.getElementById('projectDescription').value;
+                const tags = document.getElementById('projectTags').value.split(',').map(tag => tag.trim()).filter(tag => tag);
+                const image = document.getElementById('projectImage').value || "";
+                const link = document.getElementById('projectLink').value || "";
+                
+                let projectsData = getProjectsData();
+                
+                if (id === 'new') {
+                    const newId = projectsData.length > 0 ? Math.max(...projectsData.map(p => p.id)) + 1 : 1;
+                    projectsData.push({
+                        id: newId,
+                        title,
+                        description,
+                        tags,
+                        image,
+                        link
+                    });
+                } else {
+                    const index = projectsData.findIndex(p => p.id === parseInt(id));
+                    if (index !== -1) {
+                        projectsData[index] = {
+                            id: parseInt(id),
+                            title,
+                            description,
+                            tags,
+                            image,
+                            link
+                        };
+                    }
+                }
+                
+                saveProjectsData(projectsData);
+                loadProjectsForm(projectsData);
+                loadProjectsDisplay(projectsData);
+                resetProjectForm();
+                showToast('Project saved successfully!', 'success');
+            });
+            
+            // Experience form submission
+            document.getElementById('experienceForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const id = document.getElementById('experienceId').value;
+                const type = document.getElementById('experienceType').value;
+                const date = document.getElementById('experienceDate').value;
+                const title = document.getElementById('experienceTitle').value;
+                const subtitle = document.getElementById('experienceSubtitle').value;
+                const details = document.getElementById('experienceDetails').value;
+                
+                let experienceData = getExperienceData();
+                
+                if (id === 'new') {
+                    const newId = experienceData.length > 0 ? Math.max(...experienceData.map(e => e.id)) + 1 : 1;
+                    experienceData.push({
+                        id: newId,
+                        type,
+                        date,
+                        title,
+                        subtitle,
+                        details
+                    });
+                } else {
+                    const index = experienceData.findIndex(e => e.id === parseInt(id));
+                    if (index !== -1) {
+                        experienceData[index] = {
+                            id: parseInt(id),
+                            type,
+                            date,
+                            title,
+                            subtitle,
+                            details
+                        };
+                    }
+                }
+                
+                saveExperienceData(experienceData);
+                loadExperienceForm(experienceData);
+                loadExperienceDisplay(experienceData);
+                resetExperienceForm();
+                showToast('Experience saved successfully!', 'success');
+            });
+            
+            // Certificate form submission
+            document.getElementById('certificateForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const id = document.getElementById('certificateId').value;
+                const title = document.getElementById('certTitle').value;
+                const issuer = document.getElementById('certIssuer').value;
+                const date = document.getElementById('certDate').value;
+                const score = document.getElementById('certScore').value;
+                const verificationCode = document.getElementById('certCode').value;
+                const description = document.getElementById('certDescription').value;
+                const image = document.getElementById('certImage').value || "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
+                const verifyUrl = document.getElementById('certVerifyUrl').value;
+                
+                let certificatesData = getCertificatesData();
+                
+                if (id === 'new') {
+                    const newId = certificatesData.length > 0 ? Math.max(...certificatesData.map(c => c.id)) + 1 : 1;
+                    certificatesData.push({
+                        id: newId,
+                        title,
+                        issuer,
+                        date,
+                        score,
+                        verificationCode,
+                        description,
+                        image,
+                        verifyUrl
+                    });
+                } else {
+                    const index = certificatesData.findIndex(c => c.id === parseInt(id));
+                    if (index !== -1) {
+                        certificatesData[index] = {
+                            id: parseInt(id),
+                            title,
+                            issuer,
+                            date,
+                            score,
+                            verificationCode,
+                            description,
+                            image,
+                            verifyUrl
+                        };
+                    }
+                }
+                
+                saveCertificatesData(certificatesData);
+                loadCertificatesPreview(certificatesData);
+                resetCertificateForm();
+                showToast('Certificate saved successfully!', 'success');
+            });
+            
+            // Platform form submission
+            document.getElementById('platformForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const id = document.getElementById('platformId').value;
+                const name = document.getElementById('platformName').value;
+                const url = document.getElementById('platformUrl').value;
+                const icon = document.getElementById('platformIcon').value;
+                const description = document.getElementById('platformDescription').value;
+                const username = document.getElementById('platformUsername').value;
+                
+                let platformsData = getPlatformsData();
+                
+                if (id === 'new') {
+                    const newId = platformsData.length > 0 ? Math.max(...platformsData.map(p => p.id)) + 1 : 1;
+                    platformsData.push({
+                        id: newId,
+                        name,
+                        url,
+                        icon,
+                        description,
+                        username
+                    });
+                } else {
+                    const index = platformsData.findIndex(p => p.id === parseInt(id));
+                    if (index !== -1) {
+                        platformsData[index] = {
+                            id: parseInt(id),
+                            name,
+                            url,
+                            icon,
+                            description,
+                            username
+                        };
+                    }
+                }
+                
+                savePlatformsData(platformsData);
+                loadPlatformsForm(platformsData);
+                loadPlatformsPreview(platformsData);
+                resetPlatformForm();
+                showToast('Platform saved successfully!', 'success');
+            });
+            
+            // Contact form submission
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+                
+                if (!name || !email || !subject || !message) {
+                    showToast('Please fill all required fields', 'error');
+                    return;
+                }
+                
+                const success = sendWhatsAppMessage(name, email, subject, message);
+                
+                if (success) {
+                    showToast('Opening WhatsApp to send your message...', 'success');
+                    this.reset();
+                }
+            });
+            
+            // Email button
+            document.getElementById('sendEmail').addEventListener('click', function() {
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+                
+                if (!name || !email || !subject || !message) {
+                    showToast('Please fill all required fields', 'error');
+                    return;
+                }
+                
+                sendEmailMessage(name, email, subject, message);
+                showToast('Opening email client...', 'success');
+            });
+            
+            // Certificates card click
+            document.getElementById('certificationsCard').addEventListener('click', () => {
+                const certificates = getCertificatesData();
+                
+                let content = `
+                    <h3 style="color: var(--dark); margin-bottom: 20px;">My Certifications (${certificates.length})</h3>
+                    <p style="color: var(--gray); margin-bottom: 30px;">Click on any certificate to view details and verification information.</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+                `;
+                
+                certificates.forEach(cert => {
+                    content += `
+                        <div class="interactive-card" style="cursor: pointer; margin: 0;" onclick="viewCertificate(${cert.id})">
+                            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                                <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                                    <i class="fas fa-certificate"></i>
+                                </div>
+                                <div>
+                                    <h4 style="color: var(--dark); margin-bottom: 5px;">${cert.title}</h4>
+                                    <p style="color: var(--gray); font-size: 14px;">${cert.issuer} • ${cert.date}</p>
+                                </div>
+                            </div>
+                            <p style="color: var(--gray); font-size: 14px;">Click to view and verify</p>
+                        </div>
+                    `;
+                });
+                
+                content += `</div>`;
+                openModal("My Certifications", content);
+            });
+            
+            // Platforms card click
+            document.getElementById('platformsCard').addEventListener('click', () => {
+                const platforms = getPlatformsData();
+                
+                let content = `
+                    <h3 style="color: var(--dark); margin-bottom: 20px;">Coding Platforms</h3>
+                    <p style="color: var(--gray); margin-bottom: 30px;">Visit my profiles on various coding platforms:</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px;">
+                `;
+                
+                platforms.forEach(platform => {
+                    content += `
+                        <div class="interactive-card" style="text-align: center;">
+                            <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 32px; margin: 0 auto 20px;">
+                                <i class="${platform.icon}"></i>
+                            </div>
+                            <h4 style="color: var(--dark); margin-bottom: 10px;">${platform.name}</h4>
+                            <p style="color: var(--gray); font-size: 14px; margin-bottom: 10px;">${platform.description}</p>
+                            <p style="color: var(--primary); font-weight: 500; margin-bottom: 15px;">@${platform.username}</p>
+                            <a href="${platform.url}" target="_blank" class="btn btn-primary" style="width: 100%;">
+                                Visit Profile <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    `;
+                });
+                
+                content += `</div>`;
+                openModal("Coding Platforms", content);
+            });
+            
+            // Add shake animation CSS
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                    20%, 40%, 60%, 80% { transform: translateX(5px); }
+                }
+                .shake {
+                    animation: shake 0.5s ease-in-out;
+                }
+            `;
+            document.head.appendChild(style);
+        });
+
+        // ============================================
+        // GLOBAL FUNCTIONS
+        // ============================================
+        window.viewCertificate = function(certId) {
+            const certificates = getCertificatesData();
+            const cert = certificates.find(c => c.id === certId);
+            
+            if (!cert) return;
+            
+            let content = `
+                <div class="certificate-details">
+                    <div class="certificate-image">
+                        <img src="${cert.image}" alt="${cert.title}">
+                    </div>
+                    <div class="certificate-info">
+                        <h4>${cert.title}</h4>
+                        <p><strong>Issuer:</strong> ${cert.issuer}</p>
+                        <p><strong>Date:</strong> ${cert.date}</p>
+                        ${cert.score ? `<p><strong>Score:</strong> ${cert.score}</p>` : ''}
+                        <p><strong>Verification Code:</strong> <code>${cert.verificationCode}</code></p>
+                        <p><strong>Description:</strong> ${cert.description}</p>
+                        
+                        <div style="margin-top: 30px;">
+                            <div class="verification-badge">
+                                <i class="fas fa-shield-check"></i> Verified Certificate
+                            </div>
+                            <div style="margin-top: 20px;">
+                                <a href="${cert.verifyUrl}" target="_blank" class="btn btn-primary" style="margin-right: 10px;">
+                                    Verify Online <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <button class="btn btn-secondary" onclick="downloadCertificate(${cert.id})">
+                                    Download <i class="fas fa-download"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            openModal(cert.title, content);
+        };
+
+        window.downloadCertificate = function(certId) {
+            showToast('Certificate download initiated', 'success');
+        };
+    </script>
+</body>
+</html>
