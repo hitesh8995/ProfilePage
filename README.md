@@ -22,11 +22,12 @@ This project is designed to showcase basic personal details, skills, and links i
 
 HTML5
 
-📂 Project Structure
-ProfilePage/
-│
-├── index.html.html
-└── README.md
+## 📁 Project Structure
+
+```text
+hitesh8995-profilepage/
+    └── README.md
+```
 
 
 ⚠️ Note: You may want to rename index.html.html to index.html for standard deployment.
